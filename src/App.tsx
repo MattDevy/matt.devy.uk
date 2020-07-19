@@ -6,7 +6,8 @@ import Code from './components/Code'
 import Contact from './components/Contact'
 
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
@@ -17,7 +18,7 @@ const App = () => {
   return (
     <div className="App">
       <body>
-        <Router>
+        <Router basename='/'>
         <ResponsiveDrawer ></ResponsiveDrawer>
         <Switch>
           <Route exact path='/'><Home /></Route>
