@@ -20,6 +20,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import PersonIcon from '@material-ui/icons/Person';
 import HomeIcon from '@material-ui/icons/Home';
 import { ClickAwayListener } from '@material-ui/core';
+import { isMobile, isBrowser } from 'react-device-detect'
 
 import { Link } from 'react-router-dom'
 
@@ -87,18 +88,22 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function AppDrawerLeft() {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(isMobile ? false : true);
 
     const handleDrawerOpen = () => {
-        setOpen(true);
+        if (isMobile) {
+            setOpen(true);
+        }
     };
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        if (isMobile) {
+            setOpen(false);
+        }
     };
 
     return (
-        <ClickAwayListener onClickAway={handleDrawerClose}>
+        <ClickAwayListener onClickAway={isMobile ? handleDrawerClose : () => null}>
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
@@ -132,10 +137,13 @@ export default function AppDrawerLeft() {
                     }}
                 >
                     <div className={classes.drawerHeader}>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                        </IconButton>
+                        {isMobile &&
+                            <IconButton onClick={handleDrawerClose}>
+                                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                            </IconButton>
+                        }
                     </div>
+
                     <Divider />
                     <List>
                         <ListItem button key='Home' component={Link} to='/' onClick={handleDrawerClose}>
