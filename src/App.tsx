@@ -1,5 +1,9 @@
 import React from 'react';
 import './App.css';
+import Home from './components/Home'
+import About from './components/About'
+import Code from './components/Code'
+import Contact from './components/Contact'
 
 import {
   BrowserRouter as Router,
@@ -9,17 +13,17 @@ import {
 
 import AppDrawerLeft from './components/AppDrawerLeft'
 
-let App = () => {
+const App = () => {
   return (
     <div className="App">
       <body>
         <Router>
         <AppDrawerLeft />
         <Switch>
-          <Route exact path='/'> Hello, World!</Route>
-          <Route path='/about'> About me </Route>
-          <Route path='/code'> Github </Route>
-          <Route path='/contact'> Contact me </Route>
+          <Route exact path='/'><Home /></Route>
+          <Route path='/about'><About /></Route>
+          <Route path='/code'><Code /></Route>
+          <Route path='/contact'><Contact /></Route>
         </Switch>
         </Router>
       </body>

@@ -19,6 +19,7 @@ import CodeIcon from '@material-ui/icons/Code'
 import EmailIcon from '@material-ui/icons/Email';
 import PersonIcon from '@material-ui/icons/Person';
 import HomeIcon from '@material-ui/icons/Home';
+import { ClickAwayListener } from '@material-ui/core';
 
 import { Link } from 'react-router-dom'
 
@@ -97,70 +98,72 @@ export default function AppDrawerLeft() {
     };
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Matthew Devy
+        <ClickAwayListener onClickAway={handleDrawerClose}>
+            <div className={classes.root}>
+                <CssBaseline />
+                <AppBar
+                    position="fixed"
+                    className={clsx(classes.appBar, {
+                        [classes.appBarShift]: open,
+                    })}
+                >
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            className={clsx(classes.menuButton, open && classes.hide)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap>
+                            Matthew Devy
           </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <ListItem button key='Home' component={Link} to='/' onClick={handleDrawerClose}>
-                        <ListItemIcon><HomeIcon /></ListItemIcon>
-                        <ListItemText primary='Home' />
-                    </ListItem>
-                    <ListItem button key='Code' component={Link} to='/code' onClick={handleDrawerClose}>
-                        <ListItemIcon><CodeIcon /></ListItemIcon>
-                        <ListItemText primary='Code' />
-                    </ListItem>
-                    <ListItem button key='About' component={Link} to='/about' onClick={handleDrawerClose}>
-                        <ListItemIcon><PersonIcon /></ListItemIcon>
-                        <ListItemText primary='About' />
-                    </ListItem>
-                    <ListItem button key='Contact' component={Link} to='/contact' onClick={handleDrawerClose}>
-                        <ListItemIcon><EmailIcon /></ListItemIcon>
-                        <ListItemText primary='Contact' />
-                    </ListItem>
-                </List>
-            </Drawer>
-            <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.drawerHeader} />
-            </main>
-        </div>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    className={classes.drawer}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                >
+                    <div className={classes.drawerHeader}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <ListItem button key='Home' component={Link} to='/' onClick={handleDrawerClose}>
+                            <ListItemIcon><HomeIcon /></ListItemIcon>
+                            <ListItemText primary='Home' />
+                        </ListItem>
+                        <ListItem button key='Code' component={Link} to='/code' onClick={handleDrawerClose}>
+                            <ListItemIcon><CodeIcon /></ListItemIcon>
+                            <ListItemText primary='Code' />
+                        </ListItem>
+                        <ListItem button key='About' component={Link} to='/about' onClick={handleDrawerClose}>
+                            <ListItemIcon><PersonIcon /></ListItemIcon>
+                            <ListItemText primary='About' />
+                        </ListItem>
+                        <ListItem button key='Contact' component={Link} to='/contact' onClick={handleDrawerClose}>
+                            <ListItemIcon><EmailIcon /></ListItemIcon>
+                            <ListItemText primary='Contact' />
+                        </ListItem>
+                    </List>
+                </Drawer>
+                <main
+                    className={clsx(classes.content, {
+                        [classes.contentShift]: open,
+                    })}
+                >
+                    <div className={classes.drawerHeader} />
+                </main>
+            </div>
+        </ClickAwayListener>
     );
 }
