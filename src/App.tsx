@@ -11,14 +11,14 @@ import {
   Route
 } from "react-router-dom";
 
-import AppDrawerLeft from './components/AppDrawerLeft'
+import ResponsiveDrawer from './components/ResponsiveDrawer'
 
 const App = () => {
   return (
     <div className="App">
       <body>
         <Router>
-        <AppDrawerLeft />
+        <ResponsiveDrawer ></ResponsiveDrawer>
         <Switch>
           <Route exact path='/'><Home /></Route>
           <Route path='/about'><About /></Route>
