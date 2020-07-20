@@ -19,13 +19,14 @@ const App = () => {
     <div className="App">
       <body>
         <Router basename='/'>
-        <ResponsiveDrawer ></ResponsiveDrawer>
+        <ResponsiveDrawer >
         <Switch>
           <Route exact path='/'><Home /></Route>
           <Route path='/about'><About /></Route>
           <Route path='/code'><Code /></Route>
           <Route path='/contact'><Contact /></Route>
         </Switch>
+        </ResponsiveDrawer>
         </Router>
       </body>
     </div>

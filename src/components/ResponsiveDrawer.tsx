@@ -64,6 +64,7 @@ interface Props {
      * You won't need it on your project.
      */
     window?: () => Window;
+    children: React.ReactNode
 }
 
 export default function ResponsiveDrawer(props: Props) {
@@ -156,7 +157,7 @@ export default function ResponsiveDrawer(props: Props) {
             </nav>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-            
+                <>{props.children}</>
             </main>
         </div>
     );
